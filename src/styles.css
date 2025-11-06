@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color:rgb(190, 215, 215);
+
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    padding: 1em 3em 1em 3em;
+
+    width: 100vh;
+    height: 8vh;
+}
+
+.sidebar {
+    background-color: rgb(226, 242, 242);
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: column;
+
+    box-sizing: border-box; /* include padding in width */
+    width: 25%;
+    height: 100vh;
+
+    padding: 1em 2em 1em 2em;
+}
+
+.main-content {
+    background-color: azure;
+    display: flex;
+}
+
+.list-content {
+    padding: 1em 2em 1em 4em;
+}
