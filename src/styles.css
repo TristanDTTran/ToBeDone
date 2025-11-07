@@ -1,19 +1,33 @@
 body {
     margin: 0;
     padding: 0;
+    overflow: hidden; /* disables both horizontal and vertical scrolling */
+    font-family: 'Roboto';    
+}
+
+input {
+    margin: 0;
+    padding: 0;
 }
 
 .navbar {
-    background-color:rgb(190, 215, 215);
+    background-color:rgb(168, 201, 201);
 
     display: flex;
     justify-content: start;
     align-items: center;
 
-    padding: 1em 3em 1em 3em;
+    padding: 1em 4rem 1em 4rem;
 
-    width: 100vh;
+    width: 100vw;
     height: 8vh;
+}
+
+.navbar-title {
+    font-family: 'Roboto';    
+    font-weight: bolder;
+    font-size: 3em;
+    color: rgb(0, 0, 0);
 }
 
 .sidebar {
@@ -24,10 +38,11 @@ body {
     flex-direction: column;
 
     box-sizing: border-box; /* include padding in width */
-    width: 25%;
+    width: 20rem;
     height: 100vh;
 
-    padding: 1em 2em 1em 2em;
+    padding: 1em 4rem 1em 4rem;
+    font-size: 1.3em;
 }
 
 .main-content {
@@ -35,6 +50,26 @@ body {
     display: flex;
 }
 
-.list-content {
-    padding: 1em 2em 1em 4em;
+.tasks-content {
+    padding: 2em 3em;
+    font-size: 1.3em;
+}
+
+.sidebar-heading {
+    font-size: 1.5em;
+    font-weight: 500;
+    padding: 0.5em 0;
+    white-space: nowrap; /* 👈 prevents line breaks */
+}
+
+.add-project-btn {
+    white-space: nowrap; /* 👈 prevents line breaks */
+}
+
+.todo-task {
+    padding: 0.5em 0;
+}
+
+.add-task {
+    padding: 0.5em 0;
 }
