@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handles adding new tasks
     const addTaskBtn = document.getElementById("add-task");
     addTaskBtn.addEventListener('click', ()=>{
-
+        addTaskBtn.textContent = "";
         // Create a temporary input container to handle input before adding todo task
         // add the temporary input to the dom for user to enter text
         // then replace the temporay input container with the new task checkbox + text
@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         userInput.addEventListener("keydown", (e)=> {
             if (e.key === "Enter" && userInput.value.trim() !== "") {
                 createFinalTask(userInput, inputContainer);
+                addTaskBtn.textContent = "+ Add Task";
             }
         });
         userInput.addEventListener("blur", () => {
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 createFinalTask(userInput, inputContainer);
             }
+            addTaskBtn.textContent = "+ Add Task";
         });
     })
 });
@@ -83,7 +85,6 @@ function createFinalTask(userInput, inputContainer) {
 
     todoTask.appendChild(taskCheckbox);
     todoTask.appendChild(taskText);
-
     inputContainer.replaceWith(todoTask);
 }
 
