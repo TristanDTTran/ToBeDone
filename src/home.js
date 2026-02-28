@@ -22,6 +22,7 @@ export default function loadHome() {
   // Create the "Add Task" button
   const addTask = document.createElement('div');
   addTask.classList.add('add-task');
+  addTask.id = "add-task"
   addTask.textContent = '+ Add Task';
 
   // Append everything to the DOM in order
