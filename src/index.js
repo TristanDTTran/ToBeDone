@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const addTaskBtn = document.getElementById("add-task");
     addTaskBtn.addEventListener('click', ()=>{
         addTaskBtn.textContent = "";
+
         // Create a temporary input container to handle input before adding todo task
         // add the temporary input to the dom for user to enter text
         // then replace the temporay input container with the new task checkbox + text
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userInput = document.createElement('input');
         userInput.id = "tempInput"
         userInput.type = 'text';
+        userInput.classList.add("todo-task")
         userInput.placeholder = "enter task details ...";
         userInput.autofocus = true;
 
@@ -51,18 +53,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Replace temporary input task with final task in the DOM
         // finalises the user input and create final task
+
+        let isFinalized = false;
+
         userInput.addEventListener("keydown", (e)=> {
-            if (e.key === "Enter" && userInput.value.trim() !== "") {
-                createFinalTask(userInput, inputContainer);
+            if (e.key === "Enter" && !isFinalized) {
+                isFinalized = true;
+
+                checkTaskInput(userInput, inputContainer);
                 addTaskBtn.textContent = "+ Add Task";
             }
         });
+
         userInput.addEventListener("blur", () => {
-            if (!userInput.value.trim()) {
-                inputContainer.remove();
-            } else {
-                createFinalTask(userInput, inputContainer);
-            }
+            if (isFinalized) return;
+            isFinalized = true;
+            
+            checkTaskInput(userInput, inputContainer);
             addTaskBtn.textContent = "+ Add Task";
         });
     })
@@ -86,6 +93,14 @@ function createFinalTask(userInput, inputContainer) {
     todoTask.appendChild(taskCheckbox);
     todoTask.appendChild(taskText);
     inputContainer.replaceWith(todoTask);
+}
+
+function checkTaskInput(userInput, inputContainer) {
+    if (!userInput.value.trim()) {
+        inputContainer.remove();
+    } else {
+        createFinalTask(userInput, inputContainer);
+    }
 }
 
 // Clears the entire tasksContent elements
