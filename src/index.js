@@ -75,6 +75,60 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 });
 
+
+const newPageBtn = document.querySelector(".sidebar-add-task");
+newPageBtn.addEventListener("click", ()=> {
+
+    newPageBtn.textContent = ""
+    // Create temporary container to handle input of name of new page before finalising new page element
+    const tempInputContainer = document.createElement("div");
+    
+    const userPageName = document.createElement('input');
+    userPageName.id = "tempInput"
+    userPageName.type = 'text';
+    userPageName.classList.add("todo-task")
+    userPageName.placeholder = "enter name";
+    userPageName.autofocus = true;
+
+    tempInputContainer.appendChild(userPageName);
+    newPageBtn.before(tempInputContainer);
+
+    userPageName.focus();
+
+    let isFinalized = false;
+
+        userPageName.addEventListener("keydown", (e)=> {
+            if (e.key === "Enter" && !isFinalized) {
+                isFinalized = true;
+
+                createFinalNewPage(userPageName, tempInputContainer);
+                newPageBtn.textContent = "+ add";
+            }
+        });
+
+        userPageName.addEventListener("blur", () => {
+            if (isFinalized) return;
+            isFinalized = true;
+            
+            createFinalNewPage(userPageName, tempInputContainer);
+            newPageBtn.textContent = "+ add";
+        });
+
+});
+
+function createFinalNewPage(newPageName, tempInputContainer) {
+    const newPage = document.createElement('div');
+    newPage.classList.add("sidebar-page-item");
+
+    const pageText= document.createElement('span');
+    const pageTextValue = newPageName.value.trim();
+    pageText.textContent = pageTextValue;
+    pageText.textContent = " " + pageText.textContent;
+
+    newPage.appendChild(pageText);
+    tempInputContainer.replaceWith(newPage);
+}
+
 // Replace temporary inputContainer with the final task container
 function createFinalTask(userInput, inputContainer) {
     /* 
@@ -87,7 +141,8 @@ function createFinalTask(userInput, inputContainer) {
     taskCheckbox.type = "checkbox"
 
     const taskText= document.createElement('span');
-    taskText.textContent = userInput.value.trim();
+    const taskTextValue = userInput.value.trim();
+    taskText.textContent = taskTextValue;
     taskText.textContent = " " + taskText.textContent;
 
     todoTask.appendChild(taskCheckbox);
