@@ -1,7 +1,9 @@
 import './styles.css';
-import './task.js'
+import Task from './task.js';
 import loadHome from './home.js';
 import loadArchive from './archive.js';
+
+let allTasks = []; // array of task objects
 
 document.addEventListener('DOMContentLoaded', () => {
     loadHome();
@@ -86,7 +88,7 @@ newPageBtn.addEventListener("click", ()=> {
     const userPageName = document.createElement('input');
     userPageName.id = "tempInput"
     userPageName.type = 'text';
-    userPageName.classList.add("todo-task")
+    userPageName.classList.add("todo-page")
     userPageName.placeholder = "enter name";
     userPageName.autofocus = true;
 
@@ -144,6 +146,10 @@ function createFinalTask(userInput, inputContainer) {
     const taskTextValue = userInput.value.trim();
     taskText.textContent = taskTextValue;
     taskText.textContent = " " + taskText.textContent;
+
+    // create new Task object, and add to array allTasks
+    const newTask = new Task(taskTextValue)
+    allTasks.push(newTask);
 
     todoTask.appendChild(taskCheckbox);
     todoTask.appendChild(taskText);

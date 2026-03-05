@@ -1,13 +1,11 @@
-class Task {
+export default class Task {
     #task_text;
     #completed;
+    //#page;
 
-    constructor(task_text) {
+    constructor(task_text, page) {
         this.#task_text = task_text;
         this.#completed = false;
-    }
-
-    set_task_text(text) {
-        this.#task_text = text
+        //this.#page = page;
     }
 }
